@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Google Business Management Services By Ankit
+   Animation & Motion Design System
+   Matches Blueprint Section 7 specifications:
+   - Subtle, high-performance CSS animations & transitions
+   - Section reveal on scroll (IntersectionObserver friendly)
+   - Dashboard floating effect & radar ring pulse
+   - Strict prefers-reduced-motion compliance
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Keyframe Definitions
+   -------------------------------------------------------------------------- */
+
+/* Hero Floating Effect (6-10s loop) */
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.3deg);
+  }
+}
+
+@keyframes floatSubtleReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(6px) rotate(-0.3deg);
+  }
+}
+
+/* Local Map Radar Ping */
+@keyframes radarRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes radarRingInner {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Status Dot Pulse */
+@keyframes statusBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.25);
+  }
+}
+
+/* Gentle WhatsApp Ping */
+@keyframes gentlePing {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 14px 32px rgba(37, 211, 102, 0.65);
+  }
+}
+
+/* Subtle Shimmer for Highlighting */
+@keyframes shimmerPass {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Animation Utility Classes
+   -------------------------------------------------------------------------- */
+
+.animate-float {
+  animation: floatSubtle 7s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatSubtleReverse 8s ease-in-out infinite;
+}
+
+.animate-radar-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary-blue);
+  animation: radarRing 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.animate-radar-ring-delay {
+  animation-delay: 1.2s;
+}
+
+.status-dot-pulse {
+  animation: statusBlink 2.2s infinite ease-in-out;
+}
+
+.animate-whatsapp-ping {
+  animation: gentlePing 4s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Reveal System (Progressive Enhancement)
+   Notice: Elements start with mild opacity or full visibility so that if JS fails,
+   content is 100% accessible and readable!
+   -------------------------------------------------------------------------- */
+
+.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When JS is active, add js-enabled class to body to enable entrance animations */
+body.js-enabled .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: opacity, transform;
+}
+
+body.js-enabled .reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for child cards */
+body.js-enabled .stagger-1 { transition-delay: 80ms; }
+body.js-enabled .stagger-2 { transition-delay: 160ms; }
+body.js-enabled .stagger-3 { transition-delay: 240ms; }
+body.js-enabled .stagger-4 { transition-delay: 320ms; }
+body.js-enabled .stagger-5 { transition-delay: 400ms; }
+body.js-enabled .stagger-6 { transition-delay: 480ms; }
+
+/* Hero Entrance Sequence */
+body.js-enabled .hero-eyebrow {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+body.js-enabled .hero-title {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+body.js-enabled .hero-description {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
+}
+
+body.js-enabled .hero-actions {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.44s forwards;
+}
+
+body.js-enabled .hero-proof-row {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.56s forwards;
+}
+
+body.js-enabled .hero-visual-wrapper {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  animation: heroVisualIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroVisualIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Micro hover interactions */
+.hover-lift {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Strict Prefers-Reduced-Motion Compliance
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-float-reverse,
+  .animate-radar-ring,
+  .status-dot-pulse,
+  .animate-whatsapp-ping {
+    animation: none !important;
+  }
+
+  body.js-enabled .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  body.js-enabled .hero-eyebrow,
+  body.js-enabled .hero-title,
+  body.js-enabled .hero-description,
+  body.js-enabled .hero-actions,
+  body.js-enabled .hero-proof-row,
+  body.js-enabled .hero-visual-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* ========================================
+   ENHANCED ANIMATIONS - Logo Theme Update
+   ======================================== */
+
+/* Animated gradient background for hero */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Logo entrance reveal */
+@keyframes logoReveal {
+  0%   { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+  60%  { opacity: 1; transform: scale(1.08) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Card 3D tilt shimmer */
+@keyframes cardGlow {
+  0%   { box-shadow: 0 4px 20px rgba(12, 80, 210, 0.1); }
+  50%  { box-shadow: 0 8px 40px rgba(3, 161, 49, 0.2), 0 4px 20px rgba(12, 80, 210, 0.15); }
+  100% { box-shadow: 0 4px 20px rgba(12, 80, 210, 0.1); }
+}
+
+/* Typewriter cursor blink */
+@keyframes cursorBlink {
+  0%, 100% { border-right-color: #0C50D2; }
+  50%       { border-right-color: transparent; }
+}
+
+/* Particle float */
+@keyframes particleDrift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  33%  { transform: translateY(-30px) translateX(15px) scale(1.1); opacity: 0.8; }
+  66%  { transform: translateY(-15px) translateX(-10px) scale(0.9); opacity: 0.5; }
+  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+}
+
+/* Green pulse for CTA buttons */
+@keyframes greenPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(3, 161, 49, 0.4); }
+  70%  { box-shadow: 0 0 0 12px rgba(3, 161, 49, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(3, 161, 49, 0); }
+}
+
+/* Gold shimmer for headings */
+@keyframes goldShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Stats counter pop */
+@keyframes statPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); color: #FDCF02; }
+  100% { transform: scale(1); }
+}
+
+/* Floating particle elements in hero */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+  animation: particleDrift linear infinite;
+}
+.hero-particle:nth-child(1) { width: 80px; height: 80px; background: #0C50D2; top: 15%; left: 8%; animation-duration: 8s; }
+.hero-particle:nth-child(2) { width: 50px; height: 50px; background: #03A131; top: 60%; left: 5%; animation-duration: 11s; animation-delay: -3s; }
+.hero-particle:nth-child(3) { width: 120px; height: 120px; background: #FDCF02; top: 20%; right: 5%; animation-duration: 14s; animation-delay: -6s; }
+.hero-particle:nth-child(4) { width: 60px; height: 60px; background: #52AAFD; bottom: 20%; right: 10%; animation-duration: 9s; animation-delay: -2s; }
+.hero-particle:nth-child(5) { width: 40px; height: 40px; background: #7D9159; top: 40%; left: 50%; animation-duration: 12s; animation-delay: -5s; }
+
+/* Logo reveal on page load */
+.nav-logo-img {
+  animation: logoReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.1s;
+}
+
+/* Service cards glow on hover */
+.service-card:hover {
+  animation: cardGlow 2s ease-in-out infinite;
+}
+
+/* WhatsApp button green pulse */
+.floating-whatsapp-btn {
+  animation: gentlePing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite, greenPulse 2s infinite;
+}
+
+/* Stat numbers pop when counted */
+.stat-number.counted {
+  animation: statPop 0.4s ease-out;
+}
+
+/* Hero heading gold shimmer */
+.hero-title .highlight {
+  background: linear-gradient(90deg, #FDCF02 0%, #FC9C01 25%, #0C50D2 50%, #03A131 75%, #FDCF02 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s linear infinite;
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .hero-particle,
+  .nav-logo-img,
+  .floating-whatsapp-btn,
+  .stat-number.counted,
+  .hero-title .highlight {
+    animation: none !important;
+    transform: none !important;
+  }
+  .hero-title .highlight {
+    background: linear-gradient(135deg, #0C50D2, #03A131);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

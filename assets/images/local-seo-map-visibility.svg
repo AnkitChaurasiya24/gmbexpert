@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="auto">
+  <defs>
+    <linearGradient id="mapBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EBF3FF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <filter id="pinShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#101D35" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" rx="16" fill="url(#mapBgGrad)" />
+
+  <!-- Road / Map Network Lines -->
+  <path d="M 0 100 Q 200 80 300 150 T 600 180" fill="none" stroke="#FFFFFF" stroke-width="24" />
+  <path d="M 120 0 Q 150 200 280 260 T 450 400" fill="none" stroke="#FFFFFF" stroke-width="20" />
+  <path d="M 0 320 Q 250 280 400 320 T 600 270" fill="none" stroke="#FFFFFF" stroke-width="18" />
+  <path d="M 380 0 Q 400 180 500 240 T 600 360" fill="none" stroke="#FFFFFF" stroke-width="14" />
+
+  <!-- Radar Radius Rings -->
+  <circle cx="300" cy="190" r="130" fill="rgba(36,107,254,0.06)" stroke="rgba(36,107,254,0.25)" stroke-dasharray="6 6" />
+  <circle cx="300" cy="190" r="80" fill="rgba(36,107,254,0.08)" stroke="rgba(36,107,254,0.35)" />
+  <circle cx="300" cy="190" r="30" fill="rgba(36,107,254,0.15)" />
+
+  <!-- Surrounding Pins (Rank 1, 2, 3 Grid) -->
+  <g transform="translate(180, 120)">
+    <circle cx="16" cy="16" r="14" fill="#16A36A" />
+    <text x="16" y="21" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF" text-anchor="middle">1</text>
+  </g>
+
+  <g transform="translate(400, 110)">
+    <circle cx="16" cy="16" r="14" fill="#16A36A" />
+    <text x="16" y="21" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF" text-anchor="middle">1</text>
+  </g>
+
+  <g transform="translate(220, 260)">
+    <circle cx="16" cy="16" r="14" fill="#16A36A" />
+    <text x="16" y="21" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF" text-anchor="middle">2</text>
+  </g>
+
+  <g transform="translate(390, 250)">
+    <circle cx="16" cy="16" r="14" fill="#16A36A" />
+    <text x="16" y="21" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF" text-anchor="middle">1</text>
+  </g>
+
+  <!-- Center Target Business Pin -->
+  <g transform="translate(275, 150)" filter="url(#pinShadow)">
+    <path d="M25 0 C11.2 0 0 11.2 0 25 C0 42 25 65 25 65 C25 65 50 42 50 25 C50 11.2 38.8 0 25 0 Z" fill="#246BFE" />
+    <circle cx="25" cy="24" r="12" fill="#FFFFFF" />
+    <circle cx="25" cy="24" r="6" fill="#101D35" />
+  </g>
+
+  <!-- Floating Rank 3-Pack Badge -->
+  <g transform="translate(160, 310)" filter="url(#pinShadow)">
+    <rect width="280" height="60" rx="12" fill="#FFFFFF" stroke="#E2E8F0" />
+    <rect x="15" y="15" width="30" height="30" rx="6" fill="#246BFE" />
+    <text x="30" y="35" font-family="system-ui, sans-serif" font-weight="800" font-size="14" fill="#FFFFFF" text-anchor="middle">#1</text>
+    <text x="60" y="32" font-family="system-ui, sans-serif" font-weight="700" font-size="13" fill="#101D35">Local 3-Pack Top Placement</text>
+    <text x="60" y="47" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Targeted Search Radius &amp; Local Citations</text>
+  </g>
+</svg>
+

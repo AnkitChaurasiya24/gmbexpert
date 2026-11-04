@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ankit-gbp-specialist.pages.dev/sitemap.xml
+

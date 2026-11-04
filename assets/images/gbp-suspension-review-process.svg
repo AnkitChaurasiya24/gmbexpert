@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="auto">
+  <defs>
+    <linearGradient id="suspBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF2F2" />
+      <stop offset="100%" stop-color="#F8FAFC" />
+    </linearGradient>
+    <filter id="suspShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#101D35" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" rx="16" fill="url(#suspBgGrad)" />
+
+  <!-- Process Flow Horizontal Steps -->
+  <!-- Step 1: Diagnose -->
+  <g transform="translate(40, 70)" filter="url(#suspShadow)">
+    <rect width="230" height="110" rx="12" fill="#FFFFFF" stroke="#FECACA" stroke-width="1.5" />
+    <circle cx="35" cy="35" r="14" fill="#FEE2E2" />
+    <text x="35" y="40" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#DC2626" text-anchor="middle">!</text>
+    <text x="60" y="38" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">1. Policy Diagnosis</text>
+    <text x="20" y="68" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Audit guidelines violation, naming issues, address or proof discrepancy.</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 285 125 L 315 125" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 4" />
+  <polygon points="315,121 323,125 315,129" fill="#94A3B8" />
+
+  <!-- Step 2: Evidence Dossier -->
+  <g transform="translate(330, 70)" filter="url(#suspShadow)">
+    <rect width="230" height="110" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <circle cx="35" cy="35" r="14" fill="#EAF1FF" />
+    <text x="35" y="40" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#246BFE" text-anchor="middle">📁</text>
+    <text x="60" y="38" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">2. Evidence Dossier</text>
+    <text x="20" y="68" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">GST certificate, utility bills, storefront signage and official documentation.</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 445 190 L 445 220" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 4" />
+  <polygon points="441,220 445,228 449,220" fill="#94A3B8" />
+
+  <!-- Step 3: Formal Reinstatement Appeal -->
+  <g transform="translate(330, 235)" filter="url(#suspShadow)">
+    <rect width="230" height="110" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <circle cx="35" cy="35" r="14" fill="#FEF3C7" />
+    <text x="35" y="40" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#D97706" text-anchor="middle">⚖️</text>
+    <text x="60" y="38" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">3. Appeal Submission</text>
+    <text x="20" y="68" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Draft authoritative case arguments directly matching Google guidelines.</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <path d="M 315 290 L 285 290" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 4" />
+  <polygon points="285,286 277,290 285,294" fill="#94A3B8" />
+
+  <!-- Step 4: Resolution -->
+  <g transform="translate(40, 235)" filter="url(#suspShadow)">
+    <rect width="230" height="110" rx="12" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1.5" />
+    <circle cx="35" cy="35" r="14" fill="#D1FAE5" />
+    <text x="35" y="40" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#059669" text-anchor="middle">✓</text>
+    <text x="60" y="38" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">4. Safe Recovery</text>
+    <text x="20" y="68" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Reinstated profile, preserved review integrity and future safeguard policy.</text>
+  </g>
+</svg>
+

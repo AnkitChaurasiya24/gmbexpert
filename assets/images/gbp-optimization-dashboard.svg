@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="auto">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101D35" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#246BFE" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="400" rx="16" fill="url(#bgGrad2)" />
+
+  <!-- Window Header -->
+  <rect x="30" y="30" width="540" height="340" rx="12" fill="#172644" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <circle cx="55" cy="55" r="5" fill="#EF4444" />
+  <circle cx="72" cy="55" r="5" fill="#F59E0B" />
+  <circle cx="89" cy="55" r="5" fill="#10B981" />
+  <text x="300" y="59" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">Google Business Profile Health &amp; Audit Engine</text>
+
+  <!-- Metric Circles and Scores -->
+  <g transform="translate(60, 90)">
+    <!-- Score Gauge -->
+    <rect width="220" height="130" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
+    <text x="20" y="32" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8">Profile Completeness</text>
+    <text x="20" y="75" font-family="system-ui, sans-serif" font-size="38" font-weight="800" fill="#FFFFFF">98%</text>
+    <rect x="20" y="95" width="180" height="8" rx="4" fill="rgba(255,255,255,0.1)" />
+    <rect x="20" y="95" width="176" height="8" rx="4" fill="url(#blueGlow)" />
+  </g>
+
+  <g transform="translate(300, 90)">
+    <!-- Calls & Discovery -->
+    <rect width="240" height="130" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
+    <text x="20" y="32" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8">Customer Enquiries &amp; Calls</text>
+    <text x="20" y="75" font-family="system-ui, sans-serif" font-size="38" font-weight="800" fill="#34D399">+184%</text>
+    <text x="20" y="105" font-family="system-ui, sans-serif" font-size="11" fill="#94A3B8">vs previous 90-day baseline</text>
+  </g>
+
+  <!-- Audit Checklist Tags -->
+  <g transform="translate(60, 245)">
+    <rect width="480" height="105" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
+    <text x="20" y="28" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Optimization Deliverables Implemented</text>
+    
+    <!-- Badges row 1 -->
+    <rect x="20" y="42" width="135" height="24" rx="12" fill="rgba(36,107,254,0.2)" stroke="#246BFE" stroke-width="0.8" />
+    <text x="32" y="58" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">✓ High-Intent Services</text>
+
+    <rect x="165" y="42" width="145" height="24" rx="12" fill="rgba(36,107,254,0.2)" stroke="#246BFE" stroke-width="0.8" />
+    <text x="177" y="58" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">✓ Geo-Tagged Photos</text>
+
+    <rect x="320" y="42" width="140" height="24" rx="12" fill="rgba(36,107,254,0.2)" stroke="#246BFE" stroke-width="0.8" />
+    <text x="332" y="58" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">✓ 750-Char Description</text>
+
+    <!-- Badges row 2 -->
+    <rect x="20" y="74" width="130" height="24" rx="12" fill="rgba(36,107,254,0.2)" stroke="#246BFE" stroke-width="0.8" />
+    <text x="32" y="90" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">✓ Attribute Hygiene</text>
+
+    <rect x="160" y="74" width="155" height="24" rx="12" fill="rgba(36,107,254,0.2)" stroke="#246BFE" stroke-width="0.8" />
+    <text x="172" y="90" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">✓ Direct WhatsApp CTA</text>
+
+    <rect x="325" y="74" width="135" height="24" rx="12" fill="rgba(36,107,254,0.2)" stroke="#246BFE" stroke-width="0.8" />
+    <text x="337" y="90" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">✓ Weekly GBP Updates</text>
+  </g>
+</svg>
+

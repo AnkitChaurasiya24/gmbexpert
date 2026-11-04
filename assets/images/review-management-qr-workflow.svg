@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="auto">
+  <defs>
+    <linearGradient id="qrBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#EFF6FF" />
+    </linearGradient>
+    <filter id="qrShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#101D35" flood-opacity="0.1" />
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" rx="16" fill="url(#qrBgGrad)" />
+
+  <!-- Left: Standee / QR Card Mockup -->
+  <g transform="translate(60, 50)" filter="url(#qrShadow)">
+    <rect width="210" height="300" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <!-- Standee Header -->
+    <rect width="210" height="50" rx="16" fill="#101D35" />
+    <rect y="30" width="210" height="20" fill="#101D35" />
+    <text x="105" y="32" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF" text-anchor="middle">Share Your Experience</text>
+
+    <!-- Star Ratings -->
+    <text x="105" y="80" font-family="system-ui, sans-serif" font-size="18" fill="#F59E0B" text-anchor="middle">★★★★★</text>
+
+    <!-- QR Box -->
+    <rect x="45" y="100" width="120" height="120" rx="8" fill="#F8FAFC" stroke="#CBD5E1" />
+    <!-- QR Pixels Pattern -->
+    <rect x="55" y="110" width="30" height="30" fill="#101D35" />
+    <rect x="61" y="116" width="18" height="18" fill="#FFFFFF" />
+    <rect x="66" y="121" width="8" height="8" fill="#101D35" />
+
+    <rect x="125" y="110" width="30" height="30" fill="#101D35" />
+    <rect x="131" y="116" width="18" height="18" fill="#FFFFFF" />
+    <rect x="136" y="121" width="8" height="8" fill="#101D35" />
+
+    <rect x="55" y="180" width="30" height="30" fill="#101D35" />
+    <rect x="61" y="186" width="18" height="18" fill="#FFFFFF" />
+    <rect x="66" y="191" width="8" height="8" fill="#101D35" />
+
+    <!-- Center Accent Dot -->
+    <circle cx="105" cy="160" r="10" fill="#246BFE" />
+    <path d="M102 160 L104 162 L109 157" fill="none" stroke="#FFFFFF" stroke-width="1.8" />
+
+    <text x="105" y="245" font-family="system-ui, sans-serif" font-weight="600" font-size="11" fill="#101D35" text-anchor="middle">Scan with Phone Camera</text>
+    <text x="105" y="265" font-family="system-ui, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Direct Google Review Destination</text>
+  </g>
+
+  <!-- Right: 3 Steps Workflow -->
+  <g transform="translate(305, 60)">
+    <!-- Workflow Step 1 -->
+    <g transform="translate(0, 0)">
+      <circle cx="20" cy="20" r="18" fill="#EAF1FF" />
+      <text x="20" y="25" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#246BFE" text-anchor="middle">1</text>
+      <text x="50" y="18" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">Instant QR Scan / SMS Link</text>
+      <text x="50" y="36" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Customers open exact review box in 1-click.</text>
+    </g>
+
+    <line x1="20" y1="46" x2="20" y2="84" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="3 3" />
+
+    <!-- Workflow Step 2 -->
+    <g transform="translate(0, 95)">
+      <circle cx="20" cy="20" r="18" fill="#FEF3C7" />
+      <text x="20" y="25" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#D97706" text-anchor="middle">2</text>
+      <text x="50" y="18" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">Genuine Feedback Capture</text>
+      <text x="50" y="36" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">100% compliant with Google anti-gating policies.</text>
+    </g>
+
+    <line x1="20" y1="141" x2="20" y2="179" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="3 3" />
+
+    <!-- Workflow Step 3 -->
+    <g transform="translate(0, 190)">
+      <circle cx="20" cy="20" r="18" fill="#E8F9F1" />
+      <text x="20" y="25" font-family="system-ui, sans-serif" font-weight="800" font-size="12" fill="#16A36A" text-anchor="middle">3</text>
+      <text x="50" y="18" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#101D35">Professional Response Templates</text>
+      <text x="50" y="36" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">SEO keyword-enriched, polite owner replies.</text>
+    </g>
+  </g>
+</svg>
+
