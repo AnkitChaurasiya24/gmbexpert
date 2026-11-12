@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="auto">
+  <defs>
+    <linearGradient id="seoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAF3FF" />
+      <stop offset="100%" stop-color="#F7F9FC" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#102B50" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" rx="16" fill="url(#seoBgGrad)" />
+
+  <!-- Code / Website Browser Window -->
+  <g transform="translate(50, 45)" filter="url(#cardShadow)">
+    <rect width="500" height="310" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    
+    <!-- Browser Header Bar -->
+    <rect width="500" height="42" rx="12" fill="#F8FAFC" />
+    <path d="M0 42 L500 42" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="24" cy="21" r="5" fill="#EF4444" />
+    <circle cx="40" cy="21" r="5" fill="#F59E0B" />
+    <circle cx="56" cy="21" r="5" fill="#10B981" />
+    
+    <!-- Address Bar -->
+    <rect x="80" y="10" width="280" height="22" rx="6" fill="#FFFFFF" stroke="#E2E8F0" />
+    <text x="96" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748B">https://yourbusiness.in/local-services</text>
+
+    <!-- Content Split Layout -->
+    <!-- Left Column: Local HTML Page Structure -->
+    <g transform="translate(24, 60)">
+      <rect width="210" height="220" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+      
+      <!-- H1 Title -->
+      <rect x="16" y="20" width="120" height="12" rx="3" fill="#102B50" />
+      <text x="145" y="30" font-family="monospace" font-size="10" font-weight="700" fill="#1769D2">&lt;h1&gt;</text>
+      
+      <!-- Content Lines -->
+      <rect x="16" y="44" width="175" height="8" rx="2" fill="#CBD5E1" />
+      <rect x="16" y="60" width="155" height="8" rx="2" fill="#E2E8F0" />
+      <rect x="16" y="76" width="168" height="8" rx="2" fill="#E2E8F0" />
+      
+      <!-- Local NAP Badge -->
+      <rect x="16" y="100" width="175" height="46" rx="6" fill="#FFFFFF" stroke="#1769D2" stroke-width="1" stroke-dasharray="3 3" />
+      <circle cx="32" cy="123" r="8" fill="#EAF3FF" />
+      <text x="32" y="127" font-family="-apple-system, sans-serif" font-size="10" fill="#1769D2" text-anchor="middle">📍</text>
+      <text x="48" y="118" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#102B50">Consistent Local NAP</text>
+      <text x="48" y="133" font-family="-apple-system, sans-serif" font-size="9" fill="#64748B">Name • Address • Phone</text>
+
+      <!-- Target Keywords -->
+      <g transform="translate(16, 160)">
+        <rect width="84" height="20" rx="10" fill="#EAF3FF" />
+        <text x="42" y="174" font-family="-apple-system, sans-serif" font-size="9" font-weight="600" fill="#1769D2" text-anchor="middle">Local SEO India</text>
+        
+        <rect x="92" width="80" height="20" rx="10" fill="#E8F9F1" />
+        <text x="132" y="174" font-family="-apple-system, sans-serif" font-size="9" font-weight="600" fill="#16A36A" text-anchor="middle">City-Specific</text>
+      </g>
+    </g>
+
+    <!-- Right Column: Structured Data Schema Code Block -->
+    <g transform="translate(254, 60)">
+      <rect width="220" height="220" rx="8" fill="#102B50" />
+      
+      <!-- Code Header -->
+      <rect width="220" height="26" rx="8" fill="#172644" />
+      <text x="14" y="17" font-family="monospace" font-size="10" font-weight="600" fill="#94A3B8">JSON-LD LocalBusiness Schema</text>
+      
+      <!-- Code text simulation -->
+      <text x="14" y="48" font-family="monospace" font-size="10" fill="#93C5FD">"&#64;context": <tspan fill="#6EE7B7">"https://schema.org"</tspan>,</text>
+      <text x="14" y="66" font-family="monospace" font-size="10" fill="#93C5FD">"&#64;type": <tspan fill="#FCD34D">"LocalBusiness"</tspan>,</text>
+      <text x="14" y="84" font-family="monospace" font-size="10" fill="#93C5FD">"name": <tspan fill="#6EE7B7">"Your Business"</tspan>,</text>
+      <text x="14" y="102" font-family="monospace" font-size="10" fill="#93C5FD">"telephone": <tspan fill="#6EE7B7">"+91..."</tspan>,</text>
+      <text x="14" y="120" font-family="monospace" font-size="10" fill="#93C5FD">"areaServed": <tspan fill="#6EE7B7">"City, State"</tspan>,</text>
+      <text x="14" y="138" font-family="monospace" font-size="10" fill="#93C5FD">"geo": {</text>
+      <text x="28" y="156" font-family="monospace" font-size="10" fill="#93C5FD">"latitude": <tspan fill="#FCA5A5">"28.6139"</tspan>,</text>
+      <text x="28" y="174" font-family="monospace" font-size="10" fill="#93C5FD">"longitude": <tspan fill="#FCA5A5">"77.2090"</tspan></text>
+      <text x="14" y="192" font-family="monospace" font-size="10" fill="#93C5FD">}</text>
+
+      <!-- Schema Validated Pill -->
+      <g transform="translate(90, 185)">
+        <rect width="115" height="22" rx="11" fill="#16A36A" />
+        <text x="14" y="15" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">✓ Valid Schema</text>
+      </g>
+    </g>
+  </g>
+</svg>
+

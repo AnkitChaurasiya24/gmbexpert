@@ -1,27 +1,25 @@
 /**
  * Google Business Management Services By Ankit
- * Core Application Script
+ * Single-Page Landing Page Core JavaScript
+ * 
  * Features:
- * - IntersectionObserver Scroll Reveal
- * - Animated Stats Counter
- * - Sticky Header Controller
- * - Accessible Mobile Drawer Navigation
- * - FAQ Accordion System
- * - High-converting WhatsApp Lead Form Serializer
- * - Interactive GBP Health Score Calculator
+ * - Sticky Header with Backdrop Filter
+ * - Accessible Mobile Navigation Drawer
+ * - ScrollSpy Active Anchor Highlighting
+ * - IntersectionObserver Scroll Reveal Animations
+ * - Animated Number Counters
+ * - Accessible FAQ Accordion
+ * - High-Converting WhatsApp Enquiry Form with Client-Side Validation
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mark JS as enabled for progressive CSS animation
-  document.body.classList.add('js-enabled');
-
   initStickyHeader();
-  initMobileNavigation();
+  initMobileDrawer();
+  initScrollSpy();
   initScrollReveal();
   initAnimatedCounters();
   initFaqAccordion();
-  initWhatsAppForms();
-  initAuditCalculator();
+  initContactForm();
 });
 
 /* --------------------------------------------------------------------------
@@ -32,7 +30,7 @@ function initStickyHeader() {
   if (!header) return;
 
   const handleScroll = () => {
-    if (window.scrollY > 24) {
+    if (window.scrollY > 20) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
@@ -44,9 +42,9 @@ function initStickyHeader() {
 }
 
 /* --------------------------------------------------------------------------
-   Mobile Navigation Drawer
+   Mobile Drawer Navigation
    -------------------------------------------------------------------------- */
-function initMobileNavigation() {
+function initMobileDrawer() {
   const toggleBtn = document.querySelector('.mobile-nav-toggle');
   const drawer = document.querySelector('.mobile-drawer');
   const overlay = document.querySelector('.mobile-drawer-overlay');
@@ -79,12 +77,43 @@ function initMobileNavigation() {
     });
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('active')) {
       closeDrawer();
     }
   });
+}
+
+/* --------------------------------------------------------------------------
+   ScrollSpy for Active Anchor Highlighting
+   -------------------------------------------------------------------------- */
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+  if (!sections.length || !navLinks.length) return;
+
+  const onScroll = () => {
+    const scrollPos = window.scrollY + 120;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 /* --------------------------------------------------------------------------
@@ -107,7 +136,7 @@ function initScrollReveal() {
       }
     });
   }, {
-    threshold: 0.12,
+    threshold: 0.1,
     rootMargin: '0px 0px -40px 0px'
   });
 
@@ -125,27 +154,21 @@ function initAnimatedCounters() {
     const target = parseFloat(counter.getAttribute('data-target'));
     const prefix = counter.getAttribute('data-prefix') || '';
     const suffix = counter.getAttribute('data-suffix') || '';
-    const isDecimal = target % 1 !== 0;
-    const duration = 1200; // ms
+    const duration = 1200;
     const startTime = performance.now();
 
     const updateCount = (currentTime) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const currentVal = easeProgress * target;
+      const currentVal = Math.floor(easeProgress * target);
 
-      if (isDecimal) {
-        counter.textContent = prefix + currentVal.toFixed(1) + suffix;
-      } else {
-        counter.textContent = prefix + Math.floor(currentVal) + suffix;
-      }
+      counter.textContent = prefix + currentVal + suffix;
 
       if (progress < 1) {
         requestAnimationFrame(updateCount);
       } else {
-        counter.textContent = prefix + (isDecimal ? target.toFixed(1) : target) + suffix;
+        counter.textContent = prefix + target + suffix;
       }
     };
 
@@ -159,7 +182,7 @@ function initAnimatedCounters() {
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.3 });
 
   counters.forEach(counter => observer.observe(counter));
 }
@@ -178,7 +201,7 @@ function initFaqAccordion() {
     trigger.addEventListener('click', () => {
       const isOpen = item.classList.contains('active');
 
-      // Optional: Close siblings for accordion behavior
+      // Close other accordion items for clean UX
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
@@ -199,112 +222,116 @@ function initFaqAccordion() {
 }
 
 /* --------------------------------------------------------------------------
-   WhatsApp Lead Generation Forms
+   Contact Form Validation & WhatsApp Serializer
    -------------------------------------------------------------------------- */
-function initWhatsAppForms() {
-  const forms = document.querySelectorAll('.whatsapp-lead-form');
-  if (!forms.length) return;
+function initContactForm() {
+  const form = document.getElementById('consultation-enquiry-form');
+  if (!form) return;
 
-  forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  const confirmBox = document.getElementById('form-confirmation');
+  const backupLink = document.getElementById('backup-whatsapp-link');
 
-      const name = form.querySelector('[name="name"]')?.value.trim() || '';
-      const bizName = form.querySelector('[name="business_name"]')?.value.trim() || '';
-      const city = form.querySelector('[name="city"]')?.value.trim() || '';
-      const service = form.querySelector('[name="service"]')?.value.trim() || 'General GBP Enquiry';
-      const profileUrl = form.querySelector('[name="profile_url"]')?.value.trim() || '';
-      const message = form.querySelector('[name="message"]')?.value.trim() || '';
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      if (!name || !bizName) {
-        alert('Please provide your name and business name to proceed.');
-        return;
-      }
+    let isValid = true;
 
-      // Format WhatsApp message according to blueprint Section 12
-      let waText = `Hi Ankit, I would like to request a Google Business Profile consultation.\n\n`;
-      waText += `*Name:* ${name}\n`;
-      waText += `*Business:* ${bizName}\n`;
-      if (city) waText += `*City:* ${city}\n`;
-      waText += `*Service Required:* ${service}\n`;
-      if (profileUrl) waText += `*Profile/Website:* ${profileUrl}\n`;
-      if (message) waText += `*Details:* ${message}\n`;
+    // Elements
+    const nameEl = form.querySelector('#full-name');
+    const bizEl = form.querySelector('#business-name');
+    const phoneEl = form.querySelector('#phone-number');
+    const emailEl = form.querySelector('#email-address');
+    const locEl = form.querySelector('#business-location');
+    const serviceEl = form.querySelector('#required-service');
+    const msgEl = form.querySelector('#message');
 
-      const encodedText = encodeURIComponent(waText);
-      const waUrl = `https://wa.me/917984573924?text=${encodedText}`;
+    // Reset previous errors
+    form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
 
-      // Open WhatsApp
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-
-      // Visual feedback on form
-      const submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = `✓ Opening WhatsApp...`;
-        submitBtn.style.backgroundColor = '#16A36A';
-        setTimeout(() => {
-          submitBtn.innerHTML = originalText;
-          submitBtn.style.backgroundColor = '';
-        }, 3500);
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   Interactive GBP Health Score Calculator
-   -------------------------------------------------------------------------- */
-function initAuditCalculator() {
-  const calculator = document.getElementById('gbp-health-calculator');
-  if (!calculator) return;
-
-  const checkboxes = calculator.querySelectorAll('.calc-checkbox');
-  const scoreDisplay = calculator.querySelector('.score-number');
-  const scoreBar = calculator.querySelector('.score-fill');
-  const verdictText = calculator.querySelector('.score-verdict');
-  const auditBtn = calculator.querySelector('.btn-calculator-action');
-
-  const calculateScore = () => {
-    let score = 20; // Base score
-    checkboxes.forEach(cb => {
-      if (cb.checked) {
-        score += parseInt(cb.getAttribute('data-points') || '0', 10);
-      }
-    });
-
-    if (score > 100) score = 100;
-
-    if (scoreDisplay) scoreDisplay.textContent = score + '%';
-    if (scoreBar) scoreBar.style.width = score + '%';
-
-    let verdict = 'Needs Urgent Attention';
-    let color = '#EF4444';
-    if (score >= 80) {
-      verdict = 'Strong Local Visibility Potential';
-      color = '#16A36A';
-    } else if (score >= 50) {
-      verdict = 'Moderate - Missing High-Value Enquiries';
-      color = '#D97706';
+    // Validation rules
+    const name = nameEl.value.trim();
+    if (name.length < 2) {
+      nameEl.classList.add('is-invalid');
+      isValid = false;
     }
 
-    if (verdictText) {
-      verdictText.textContent = verdict;
-      verdictText.style.color = color;
+    const bizName = bizEl.value.trim();
+    if (bizName.length < 2) {
+      bizEl.classList.add('is-invalid');
+      isValid = false;
     }
-  };
 
-  checkboxes.forEach(cb => {
-    cb.addEventListener('change', calculateScore);
+    const phone = phoneEl.value.trim().replace(/[\s-]/g, '');
+    const phoneRegex = /^[+]?[0-9]{10,14}$/;
+    if (!phoneRegex.test(phone)) {
+      phoneEl.classList.add('is-invalid');
+      isValid = false;
+    }
+
+    const email = emailEl.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      emailEl.classList.add('is-invalid');
+      isValid = false;
+    }
+
+    const location = locEl.value.trim();
+    if (location.length < 2) {
+      locEl.classList.add('is-invalid');
+      isValid = false;
+    }
+
+    const service = serviceEl.value;
+    if (!service) {
+      serviceEl.classList.add('is-invalid');
+      isValid = false;
+    }
+
+    if (!isValid) {
+      // Focus first invalid element
+      const firstInvalid = form.querySelector('.is-invalid');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    const message = msgEl ? msgEl.value.trim() : '';
+
+    // Construct formatted WhatsApp message
+    let waText = `Hi Ankit, I would like to request a Google Business Profile consultation.\n\n`;
+    waText += `*Full Name:* ${name}\n`;
+    waText += `*Business Name:* ${bizName}\n`;
+    waText += `*Phone:* ${phone}\n`;
+    waText += `*Email:* ${email}\n`;
+    waText += `*Business Location:* ${location}\n`;
+    waText += `*Required Service:* ${service}\n`;
+    if (message) {
+      waText += `*Notes / Profile Details:* ${message}\n`;
+    }
+
+    const encodedText = encodeURIComponent(waText);
+    const waUrl = `https://wa.me/917984573924?text=${encodedText}`;
+
+    // Show confirmation box
+    if (confirmBox) {
+      confirmBox.classList.add('active');
+      if (backupLink) {
+        backupLink.setAttribute('href', waUrl);
+      }
+    }
+
+    // Visual button update
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = `✓ Opening WhatsApp...`;
+      submitBtn.style.backgroundColor = '#16A36A';
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.backgroundColor = '';
+      }, 4000);
+    }
+
+    // Open WhatsApp
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   });
-
-  if (auditBtn) {
-    auditBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const currentScore = scoreDisplay ? scoreDisplay.textContent : 'Calculated';
-      const message = `Hi Ankit, I tested my GBP Health Score on your website and got ${currentScore}. I would like a detailed profile audit to improve it!`;
-      const waUrl = `https://wa.me/917984573924?text=${encodeURIComponent(message)}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-    });
-  }
 }
-

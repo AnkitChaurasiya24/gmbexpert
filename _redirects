@@ -1,0 +1,22 @@
+# Cloudflare Pages 301 Redirects for Google Business Management Services By Ankit
+/about /#about 301
+/about.html /#about 301
+/case-studies /#case-studies 301
+/case-studies.html /#case-studies 301
+/contact /#contact 301
+/contact.html /#contact 301
+/services /#services 301
+/services/ /#services 301
+/services/gbp-setup /#services 301
+/services/gbp-setup.html /#services 301
+/services/gbp-optimization /#services 301
+/services/gbp-optimization.html /#services 301
+/services/local-seo /#services 301
+/services/local-seo.html /#services 301
+/services/suspension-recovery /#services 301
+/services/suspension-recovery.html /#services 301
+/services/review-management /#services 301
+/services/review-management.html /#services 301
+/pricing /#contact 301
+/pricing.html /#contact 301
+
