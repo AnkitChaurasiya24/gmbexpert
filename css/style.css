@@ -323,45 +323,125 @@ ul, ol {
 }
 
 /* ==========================================================================
-   Announcement Bar
+   Announcement Bar (Visible & Responsive with Phone on All Screens)
    ========================================================================== */
 .announcement-bar {
   background-color: var(--color-primary-navy);
   color: #E2E8F0;
   font-size: 0.8125rem;
-  padding: 0.5rem 0;
+  padding: 0.45rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1001;
 }
 
 .announcement-bar .bar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
+.announcement-left {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
 .announcement-badge {
-  background-color: rgba(23, 105, 210, 0.3);
+  background-color: rgba(23, 105, 210, 0.35);
   color: #93C5FD;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 0.15rem 0.5rem;
+  padding: 0.18rem 0.55rem;
   border-radius: var(--radius-sm);
   letter-spacing: 0.06em;
-}
-
-.announcement-cta {
-  color: #93C5FD;
-  font-weight: 600;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
 }
 
-.announcement-cta:hover {
+.announcement-text {
+  font-size: 0.8125rem;
+  color: #E2E8F0;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.announcement-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex-wrap: nowrap;
+}
+
+.announcement-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.announcement-phone {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.12);
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.announcement-phone:hover {
+  background-color: var(--color-secondary-blue);
   color: var(--color-white);
+  border-color: var(--color-secondary-blue);
+  transform: translateY(-1px);
+}
+
+.announcement-phone i {
+  color: #93C5FD;
+  font-size: 0.75rem;
+}
+
+.announcement-phone:hover i {
+  color: #FFFFFF;
+}
+
+.announcement-phone-label {
+  font-size: 0.75rem;
+  color: #CBD5E1;
+  font-weight: 500;
+}
+
+.announcement-phone-number {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+.announcement-divider {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.75rem;
+}
+
+.announcement-whatsapp {
+  color: #4ADE80;
+}
+
+.announcement-whatsapp:hover {
+  color: #86EFAC;
   text-decoration: underline;
+}
+
+.announcement-whatsapp i {
+  font-size: 0.95rem;
+  color: #25D366;
 }
 
 /* ==========================================================================
@@ -433,6 +513,9 @@ ul, ol {
   display: flex;
   align-items: center;
   gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
@@ -470,7 +553,8 @@ ul, ol {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .header-phone-link {
@@ -2101,14 +2185,46 @@ ul, ol {
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Responsive Breakpoints & Mobile Optimization
    ========================================================================== */
+
+/* ── 1200px: Tight desktop — tighten nav gap slightly ── */
+@media (max-width: 1200px) {
+  .nav-menu {
+    gap: 1.35rem;
+  }
+}
+
+/* ── 1024px: Tablet landscape — hide phone link, compress nav, stack hero/about ── */
 @media (max-width: 1024px) {
+  /* Nav: hide phone link so only links + hamburger + CTA visible */
+  .header-phone-link {
+    display: none;
+  }
+
+  .nav-menu {
+    gap: 1.1rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+  }
+
+  /* Slightly reduce brand text at this width */
+  .brand-main {
+    font-size: 0.95rem;
+  }
+
+  .brand-sub {
+    font-size: 0.74rem;
+  }
+
+  /* Layouts */
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -2141,11 +2257,45 @@ ul, ol {
   }
 }
 
-@media (max-width: 768px) {
-  :root {
-    --header-height: 70px;
+/* ── 900px: Tight tablet — hamburger menu kicks in, hide desktop nav ── */
+@media (max-width: 900px) {
+  .nav-menu {
+    display: none;
   }
 
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .header-actions {
+    gap: 0.625rem;
+  }
+}
+
+/* ── 768px: Tablet portrait ── */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  /* Container Breathing Room */
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Announcement Bar */
+  .announcement-bar .bar-inner {
+    justify-content: center;
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .announcement-actions {
+    margin-left: 0;
+  }
+
+  /* Navigation — ensure hidden */
   .nav-menu,
   .header-phone-link {
     display: none;
@@ -2155,8 +2305,33 @@ ul, ol {
     display: flex;
   }
 
+  /* Header actions tighter */
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding-top: 2.75rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Floating badges containment */
+  .floating-badge-top {
+    top: -8px;
+    right: 8px;
+    max-width: calc(100% - 16px);
+  }
+
+  .floating-badge-bottom {
+    bottom: -8px;
+    left: 8px;
+    max-width: calc(100% - 16px);
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .services-grid {
@@ -2177,6 +2352,7 @@ ul, ol {
 
   .form-row-2 {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .floating-whatsapp-btn span {
@@ -2186,6 +2362,8 @@ ul, ol {
   .floating-whatsapp-btn {
     padding: 0.875rem;
     border-radius: var(--radius-full);
+    bottom: 20px;
+    right: 20px;
   }
 
   .footer-top-grid {
@@ -2200,34 +2378,343 @@ ul, ol {
   }
 }
 
+/* ── 640px: Large phone — shrink CTA button text, hide announcement text ── */
+@media (max-width: 640px) {
+  .announcement-text {
+    display: none;
+  }
+
+  .announcement-actions {
+    width: auto;
+  }
+
+  /* CTA button: icon-only on small screens */
+  .header-actions .btn-sm span {
+    display: none;
+  }
+
+  .header-actions .btn-sm {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+    min-width: 36px;
+  }
+
+  /* Show only icon in CTA button */
+  .header-actions .btn-sm i {
+    display: inline-flex;
+  }
+}
+
+/* ── 480px: Standard mobile ── */
 @media (max-width: 480px) {
+  :root {
+    --header-height: 60px;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Announcement Bar */
+  .announcement-bar {
+    padding: 0.38rem 0;
+  }
+
+  .announcement-bar .bar-inner {
+    gap: 0.45rem;
+    justify-content: center;
+  }
+
+  .announcement-badge {
+    display: none; /* hide badge on tiny screens — keep phone+WA only */
+  }
+
+  .announcement-phone {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .announcement-phone-number {
+    font-size: 0.825rem;
+  }
+
+  .announcement-whatsapp {
+    font-size: 0.8rem;
+  }
+
+  /* Header Brand */
+  .brand-logo {
+    gap: 0.625rem;
+  }
+
+  .brand-logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-main {
+    font-size: 0.84rem;
+    line-height: 1.15;
+  }
+
+  .brand-sub {
+    font-size: 0.7rem;
+  }
+
+  /* Section spacing */
+  .section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Hero */
   .hero-headline {
-    font-size: 2.15rem;
+    font-size: clamp(1.85rem, 7.5vw, 2.35rem);
+    line-height: 1.2;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .industries-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-principles-grid {
-    grid-template-columns: 1fr;
+  .hero-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
 
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    gap: 0.75rem;
   }
 
   .hero-cta-group .btn {
     width: 100%;
+    justify-content: center;
+  }
+
+  .hero-trust-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding-top: 1.25rem;
+  }
+
+  /* Dashboard mockup */
+  .browser-content {
+    padding: 0.875rem 0.65rem;
+  }
+
+  .dashboard-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .dashboard-metric-card {
+    padding: 0.5rem 0.25rem;
+    text-align: center;
+  }
+
+  .dashboard-metric-label {
+    font-size: 0.62rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .dashboard-metric-value {
+    font-size: 0.9rem;
+  }
+
+  .dashboard-metric-growth {
+    font-size: 0.58rem;
+    justify-content: center;
+  }
+
+  .pack-listing-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .pack-listing-details {
+    margin: 0;
+    width: 100%;
+  }
+
+  .pack-listing-actions {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.4rem;
+  }
+
+  .floating-badge {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .floating-badge-text-top {
+    font-size: 0.68rem;
+  }
+
+  .floating-badge-text-main {
+    font-size: 0.8rem;
+  }
+
+  .floating-badge-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat-item {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* About */
+  .about-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .about-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+
+  .about-name {
+    font-size: 1.2rem;
+  }
+
+  .about-principles-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .about-card-contact {
+    padding: 0.875rem;
+    word-break: break-all;
+  }
+
+  /* Services */
+  .service-visual-box {
+    height: 160px;
+    padding: 0.75rem;
+  }
+
+  .service-body {
+    padding: 1.25rem 1rem;
+  }
+
+  .service-footer {
+    padding: 0 1rem 1.25rem 1rem;
+  }
+
+  /* Features & Process */
+  .feature-block {
+    padding: 1.25rem 1rem;
+  }
+
+  .process-step-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .industries-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .industry-card {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Case Studies */
+  .case-card {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Contact & Form */
+  .contact-info-card {
+    padding: 1.25rem 1rem;
   }
 
   .enquiry-form-card {
-    padding: 1.5rem;
+    padding: 1.25rem 1rem;
+  }
+
+  /* iOS Safari zoom prevention */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px !important;
+    padding: 0.7rem 0.875rem;
+  }
+
+  /* Final CTA */
+  .final-cta-section {
+    padding: 3.5rem 0;
+  }
+
+  .final-cta-headline {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+  }
+
+  .final-cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .final-cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ── 360px: Smallest phones (Galaxy S8 etc.) ── */
+@media (max-width: 360px) {
+  .brand-main {
+    font-size: 0.78rem;
+  }
+
+  .brand-sub {
+    font-size: 0.65rem;
+  }
+
+  .announcement-phone-number {
+    font-size: 0.78rem;
+  }
+
+  .case-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions {
+    gap: 0.4rem;
   }
 }
 
